@@ -25,97 +25,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>rabbit2018.local</td>
-                            <td>Active</td>
-                            <td>2019/01/01</td>
-                            <td>2019/01/01</td>
-                        </tr>
-                        <tr>
-                            <td style="color:red">rabbit2018.local</td>
-                            <td style="color:black;background-color:red">Deactive</td>
-                            <td style="color:red">2019/01/01</td>
-                            <td style="color:red">2019/01/01</td>
-                        </tr>
-                        <tr>
-                            <td>rabbit2018.local</td>
-                            <td>Deactive</td>
-                            <td>2019/01/01</td>
-                            <td>2019/01/01</td>
-                        </tr>
-                        <tr><th colspan="5" style="background-color:#00ced1;color:white">NOCIX拠点</th></tr>
-                        <tr>
-                            <td>rabbit2018.local</td>
-                            <td>Deactive</td>
-                            <td>2019/01/01</td>
-                            <td>2019/01/01</td>
-                        </tr>
-                        <tr>
-                            <td style="color:red">rabbit2018.local</td>
-                            <td style="color:black;background-color:red">Deactive</td>
-                            <td style="color:red">2019/01/01</td>
-                            <td style="color:red">2019/01/01</td>
-                        </tr>
-                        <tr>
-                            <td>rabbit2018.local</td>
-                            <td>Deactive</td>
-                            <td>2019/01/01</td>
-                            <td>2019/01/01</td>
-                        </tr>
-                        <tr><th colspan="5" style="background-color:#00ced1;color:white">自宅サーバ</th></tr>
-                        <tr>
-                            <td>rabbit2018.local</td>
-                            <td>Deactive</td>
-                            <td>2019/01/01</td>
-                            <td>2019/01/01</td>
-                        </tr>
-                        <tr>
-                            <td>rabbit2018.local</td>
-                            <td>Deactive</td>
-                            <td>2019/01/01</td>
-                            <td>2019/01/01</td>
-                        </tr>
-                        <tr>
-                            <td>rabbit2018.local</td>
-                            <td>Deactive</td>
-                            <td>2019/01/01</td>
-                            <td>2019/01/01</td>
-                        </tr>
                         <tr><th colspan="5" style="background-color:#00ced1;color:white">モバイル端末</th></tr>
-                        <tr>
-                            <td>rabbit2018.local</td>
-                            <td>Deactive</td>
-                            <td>2019/01/01</td>
-                            <td>2019/01/01</td>
-                        </tr>
-                        <tr>
-                            <td>rabbit2018.local</td>
-                            <td>Deactive</td>
-                            <td>2019/01/01</td>
-                            <td>2019/01/01</td>
-                        </tr>
-                        <tr>
-                            <td>rabbit2018.local</td>
-                            <td>Deactive</td>
-                            <td>2019/01/01</td>
-                            <td>2019/01/01</td>
-                        </tr>
-                        <tr>
-                            <td style="color:red">rabbit2018.local</td>
-                            <td style="color:black;background-color:red">Deactive</td>
-                            <td style="color:red">2019/01/01</td>
-                            <td style="color:red">2019/01/01</td>
-                        </tr>
-                        <tr>
-                            <td>rabbit2018.local</td>
-                            <td>Deactive</td>
-                            <td>2019/01/01</td>
-                            <td>2019/01/01</td>
-                        </tr>
                         @foreach ($hosts as $host)
-                            <tr>
+                            <tr class="{{ mb_strtolower($host->status) }}">
                                 <td>{{ $host->hostname }}</td>
-                                <td>{{ $host->status }}</td>
+                                <td class="td_{{ mb_strtolower($host->status) }}">{{ $host->status }}</td>
                                 <td>{{ $host->lastcheck_at }}</td>
                                 <td>{{ $host->created_at }}</td>
                                 <td><a href="/hosts/{{ $host->id }}">SERVER</a></td>

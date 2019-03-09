@@ -19,6 +19,18 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style type="text/css">
+
+        .deactive {
+            color:red;
+        }
+
+        .td_deactive {
+            color:black;
+            background-color:red;
+        }
+
+    </style>
 </head>
 <body>
     <div id="app">
