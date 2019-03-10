@@ -1,2 +1,2 @@
 ## 設置URL
-https://pcm.k636174.net/
+https://pcm.k636174.net/hosts/
