@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
@@ -19,17 +19,21 @@
                         <tr>
                             <th>ホスト名</th>
                             <th>Status</th>
+                            <th>ホストIP</th>
+                            <th>NAT IP</th>
                             <th>データ受信日時</th>
                             <th>監視開始日時</th>
                             <th>詳細情報</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr><th colspan="5" style="background-color:#00ced1;color:white">モバイル端末</th></tr>
+                        <tr><th colspan="7" style="background-color:#00ced1;color:white">モバイル端末</th></tr>
                         @foreach ($hosts as $host)
                             <tr class="{{ mb_strtolower($host->status) }}">
                                 <td>{{ $host->hostname }}</td>
                                 <td class="td_{{ mb_strtolower($host->status) }}">{{ $host->status }}</td>
+                                <th>{{ $host->src_lip }}</th>
+                                <th>{{ $host->src_gip }}</th>
                                 <td>{{ $host->lastcheck_at }}</td>
                                 <td>{{ $host->created_at }}</td>
                                 <td><a href="/hosts/{{ $host->id }}">SERVER</a></td>
