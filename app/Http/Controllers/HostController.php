@@ -15,7 +15,8 @@ class HostController extends Controller
     public function index()
     {
         //$hosts = \DB::select('SELECT `H`.id,`H`.hostname,`H`.created_at, `HS`.status, `HS`.lastcheck_at FROM ( `pcm_k636174_net`.`hosts` `H` LEFT JOIN `pcm_k636174_net`.`host_status` `HS` ON (`H`.`id` = `HS`.`host_id`) )');
-        $hosts = \DB::select('SELECT hosts.id,hosts.hostname,hosts.created_at,host_status.lastcheck_at , host_status.status,host_ips.src_lip , host_ips.src_gip  FROM hosts JOIN host_status ON (hosts.id=host_status.host_id) LEFT JOIN host_ips ON (hosts.id=host_ips.host_id) order by host_ips.src_gip');
+        //$hosts = \DB::select('SELECT hosts.id,hosts.hostname,hosts.created_at,host_status.lastcheck_at , host_status.status,host_ips.src_lip , host_ips.src_gip  FROM hosts JOIN host_status ON (hosts.id=host_status.host_id) LEFT JOIN host_ips ON (hosts.id=host_ips.host_id) order by host_ips.src_gip');
+        $hosts = \DB::select('SELECT H.id,H.hostname,H.created_at,HS.lastcheck_at , HS.status,HI.src_lip ,HI.src_gip,HG.group_id,G.groupname FROM hosts as H LEFT JOIN host_status AS HS ON (H.id = HS.host_id) LEFT JOIN host_ips AS HI ON (H.id = HI.host_id) LEFT JOIN host_group AS HG ON (H.id = HG.host_id) LEFT JOIN groups AS G ON (HG.group_id = G.id) ORDER BY `HI`.`src_lip` ASC');
         return view('hosts.index')->with("hosts",$hosts);
     }
 

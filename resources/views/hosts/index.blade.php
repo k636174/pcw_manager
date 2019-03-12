@@ -20,29 +20,29 @@
                             <th>ホスト名</th>
                             <th>Status</th>
                             <th>ホストIP</th>
+                            <th>NAT_IP</th>
                             <th>データ受信日時</th>
                             <th>監視開始日時</th>
                             <th>詳細情報</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr><th colspan="7" style="background-color:#00ced1;color:white">モバイル端末</th></tr>
                         <?php $host_tmp = ""; ?>
                         @foreach ($hosts as $host)
-                            @if ($host_tmp != $host->src_gip)
-                                <tr><th colspan="7" style="background-color:#00ced1;color:white">{{ $host->src_gip }}</th></tr>
+                            @if ($host_tmp != $host->group_id)
+                                <tr><th colspan="7" style="background-color:#00ced1;color:white">{{ $host->groupname }}</th></tr>
                             @endif
                             <tr class="{{ mb_strtolower($host->status) }}">
                                 <td>{{ $host->hostname }}</td>
                                 <td class="td_{{ mb_strtolower($host->status) }}">{{ $host->status }}</td>
                                 <th>{{ $host->src_lip }}</th>
-                                <!--<th>{{ $host->src_gip }}</th>-->
+                                <th>{{ $host->src_gip }}</th>
                                 <td>{{ $host->lastcheck_at }}</td>
                                 <td>{{ $host->created_at }}</td>
                                 <td><a href="/hosts/{{ $host->id }}">SERVER</a></td>
                             </tr>
 
-                            <?php $host_tmp = $host->src_gip; ?>
+                            <?php $host_tmp = $host->group_id; ?>
 
                         @endforeach
                         </tbody>
