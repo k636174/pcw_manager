@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::resource('groups', 'GroupController');
 Route::resource('hosts', 'HostController');
 Route::get('/ajax_loadaverage/{id}', 'HostController@ajax_loadaverage');
 
