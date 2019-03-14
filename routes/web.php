@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HostController@index');
 
 Route::resource('groups', 'GroupController');
 Route::resource('hosts', 'HostController');
