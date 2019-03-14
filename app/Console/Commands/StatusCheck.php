@@ -37,34 +37,6 @@ class StatusCheck extends Command
      */
     public function handle()
     {
-        date_default_timezone_set('Asia/Tokyo');
-
-        for($i = 255; $i < 255; $i++){
-
-            $datetime = date("Y/m/d H:i:s");
-            $ip = "172.16.16.$i";
-	    $output=array();
-            exec("ping -w 1 -c 1 $ip", $output, $status);
-	    var_dump($output);
-            if(strpos($output[1],'Unreachable') === false){
-
-                $hostname = gethostbyaddr($ip);
-                if(empty($host)){
-                    $hostname = $ip;
-                }
-
-                $sql = "INSERT INTO `hosts` (hostname, created_at) VALUES ('$hostname','$datetime') ON DUPLICATE KEY UPDATE hostname = VALUES(hostname)";
-                \DB::statement($sql);
-
-                $host_data = \DB::table('hosts')->where('hostname', $hostname )->first();
-                $host_id = $host_data->id;
-
-                $sql = "INSERT INTO `host_status` (host_id, status, lastcheck_at, created_at) VALUES ('$host_id','Active','$datetime','$datetime') ON DUPLICATE KEY UPDATE lastcheck_at = VALUES (lastcheck_at),status = 'Active';";
-                \DB::statement($sql);
-
-            }
-        }
-
         $sql = "UPDATE host_status SET status=\"Deactive\" WHERE status != \"Deactive\" AND lastcheck_at < CURRENT_TIMESTAMP + INTERVAL - 5 MINUTE";
         \DB::update($sql);
     }
