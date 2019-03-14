@@ -13,7 +13,7 @@ class ApiController extends Controller
      */
     public function heartbeat(Request $request)
     {
-	date_default_timezone_set('Asia/Tokyo');
+	    date_default_timezone_set('Asia/Tokyo');
         //Heart Beat
         $hostname = $request->hostname;
         $datetime = date("Y/m/d H:i:s");
@@ -21,10 +21,10 @@ class ApiController extends Controller
         $src_gip = \Request::ip();
 
         $host_flag = \DB::table('hosts')->where('hostname', $hostname )->exists();
-	if(!$host_flag){
-        	$sql = "INSERT INTO `hosts` (hostname, created_at) VALUES ('$hostname','$datetime') ON DUPLICATE KEY UPDATE hostname = VALUES (hostname);";
-        	\DB::statement($sql);
-	}
+        if(!$host_flag){
+                $sql = "INSERT INTO `hosts` (hostname, created_at) VALUES ('$hostname','$datetime') ON DUPLICATE KEY UPDATE hostname = VALUES (hostname);";
+                \DB::statement($sql);
+        }
 
         $host_data = \DB::table('hosts')->where('hostname', $hostname )->first();
 
