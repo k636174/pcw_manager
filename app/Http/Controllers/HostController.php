@@ -14,7 +14,7 @@ class HostController extends Controller
      */
     public function index()
     {
-        $hosts = \DB::select('SELECT H.id,H.hostname,H.created_at,HS.lastcheck_at , HS.status,HI.src_lip ,HI.src_gip,HG.group_id,G.groupname FROM hosts as H LEFT JOIN host_status AS HS ON (H.id = HS.host_id) LEFT JOIN host_ips AS HI ON (H.id = HI.host_id) LEFT JOIN host_group AS HG ON (H.id = HG.host_id) LEFT JOIN groups AS G ON (HG.group_id = G.id) ORDER BY `HI`.`src_lip` ASC');
+        $hosts = \DB::select('SELECT H.id,H.hostname,H.created_at,HS.lastcheck_at , HS.status,HI.src_lip ,HI.src_gip,HG.group_id,G.groupname FROM hosts as H LEFT JOIN host_status AS HS ON (H.id = HS.host_id) LEFT JOIN host_ips AS HI ON (H.id = HI.host_id) LEFT JOIN host_group AS HG ON (H.id = HG.host_id) LEFT JOIN groups AS G ON (HG.group_id = G.id) ORDER BY HG.group_id ASC');
         return view('hosts.index')->with("hosts",$hosts);
     }
 
