@@ -14,4 +14,8 @@ class Host extends Model
     public function host_ips(){
         return $this->hasOne('App\HostIp');
     }
+
+    public function host_status(){
+        return $this->hasOne('App\HostStatus');
+    }
 }
