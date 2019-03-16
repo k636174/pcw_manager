@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Host,App\Group;
 
 class HostController extends Controller
 {
@@ -59,7 +60,9 @@ class HostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $host = Host::find($id);
+        $groups = Group::all("id","groupname")->toArray();
+        return view('hosts.edit', ['host' => $host,'groups' => $groups]);
     }
 
     /**
@@ -71,7 +74,9 @@ class HostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $host = Host::findOrFail($id);
+        $host->groups()->sync(array($request->group_id));
+        return redirect('hosts/'.$id.'/edit');
     }
 
     /**
