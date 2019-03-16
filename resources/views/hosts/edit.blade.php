@@ -35,16 +35,4 @@
             <button type="submit" name="submit" class="btn btn-primary">{{ __('Submit') }}</button>
         </form>
     </div>
-
-    <?php var_dump($host->groups);?>
-
-    //var_dump($host->hostname);
-    //var//dump($host->host_ips->src_gip);
-    //var_dump($host->host_ips->src_lip);
-    //foreach ($host->groups as $group) {
-    //    var_dump($group->id);
-    //    var_dump($group->groupname);
-    //}
-    //exit;
-
 @endsection
