@@ -28,6 +28,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 	    $schedule->command('status_check')->everyMinute()->withoutOverlapping();
+        $schedule->command('xg_add')->everyMinute()->withoutOverlapping();
     }
 
     /**
