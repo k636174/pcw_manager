@@ -34,6 +34,9 @@ class ApiController extends Controller
         $sql = "INSERT INTO `host_status` (host_id, status, lastcheck_at, created_at) VALUES ('$host_id','Active','$datetime','$datetime') ON DUPLICATE KEY UPDATE lastcheck_at = VALUES (lastcheck_at),status = 'Active';";
         \DB::statement($sql);
 
+        $sql = "INSERT INTO `group_host` (`host_id`, `group_id`) VALUES ('$host_id', '0') ON DUPLICATE KEY UPDATE host_id = VALUES ($host_id);";
+        \DB::statement($sql);
+
         $sql = "INSERT INTO `host_ips` (host_id, src_gip, src_lip, created_at) VALUES ('$host_id','$src_gip','$src_lip','$datetime') ON DUPLICATE KEY UPDATE src_gip = '$src_gip',src_lip =  '$src_lip';";
         \DB::statement($sql);
 
