@@ -35,8 +35,8 @@
                             <tr class="{{ mb_strtolower($host->host_status->status) }}">
                                 <td>{{ $host->hostname }}</td>
                                 <td class="td_{{ mb_strtolower($host->host_status->status) }}">{{ $host->host_status->status }}</td>
-                                <th>{{ $host->host_ips->src_lip }}</th>
-                                <th>{{ $host->host_ips->src_gip }}</th>
+                                <td>{{ $host->host_ips->src_lip }}</td>
+                                <td>{{ $host->host_ips->src_gip }}</td>
                                 <td>{{ $host->host_status->lastcheck_at }}</td>
                                 <td>{{ $host->created_at }}</td>
                                 <td><a href="/hosts/{{ $host->id }}">SERVER</a></td>
