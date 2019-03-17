@@ -28,24 +28,29 @@
                         </thead>
                         <tbody>
                         <?php $host_tmp = ""; ?>
-                        @foreach ($hosts as $host)
-                            @if ($host_tmp != $host->groups[0]->id)
-                                <tr><th colspan="7" style="background-color:#00ced1;color:white">{{ $host->groups[0]->groupname }}</th></tr>
+                        @foreach ($groups as $group)
+                            @if ($host_tmp != $group["groupname"])
+                                <tr><th colspan="7" style="background-color:#00ced1;color:white">{{ $group["groupname"] }}</th></tr>
                             @endif
-                            <tr class="{{ mb_strtolower($host->host_status->status) }}">
-                                <td>{{ $host->hostname }}</td>
-                                <td class="td_{{ mb_strtolower($host->host_status->status) }}">{{ $host->host_status->status }}</td>
-                                <td>{{ $host->host_ips->src_lip }}</td>
-                                <td>{{ $host->host_ips->src_gip }}</td>
-                                <td>{{ $host->host_status->lastcheck_at }}</td>
-                                <td>{{ $host->created_at }}</td>
-                                <td><a href="/hosts/{{ $host->id }}">SERVER</a></td>
-                            </tr>
-
-                            <?php $host_tmp = $host->groups[0]->id; ?>
-
+                            @foreach ($hosts as $host)
+                                @if ($host_tmp = $host->groups[0]->groupname == $group["groupname"])
+                                    <tr class="{{ mb_strtolower($host->host_status->status) }}">
+                                        <td>{{ $host->hostname }}</td>
+                                        <td class="td_{{ mb_strtolower($host->host_status->status) }}">{{ $host->host_status->status }}</td>
+                                        <td>{{ $host->host_ips->src_lip }}</td>
+                                        <td>{{ $host->host_ips->src_gip }}</td>
+                                        <td>{{ $host->host_status->lastcheck_at }}</td>
+                                        <td>{{ $host->created_at }}</td>
+                                        <td><a href="/hosts/{{ $host->id }}">SERVER</a></td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                            <?php $host_tmp = $group["groupname"]; ?>
                         @endforeach
                         </tbody>
+
+
+
                     </table>
 
 

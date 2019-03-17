@@ -15,7 +15,8 @@ class HostController extends Controller
      */
     public function index()
     {
-        return view('hosts.index')->with("hosts",Host::all());
+        $groups = Group::orderBy("groupname")->get()->toArray();
+        return view('hosts.index', ['hosts' => Host::get(),'groups' => $groups]);
     }
 
     /**
