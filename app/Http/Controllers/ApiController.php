@@ -35,7 +35,7 @@ class ApiController extends Controller
         \DB::statement($sql);
 
         $sql = "INSERT INTO `group_host` (`host_id`, `group_id`) VALUES ('$host_id', '0');";
-        \DB::statement($sql);
+        //\DB::statement($sql);
 
         $sql = "INSERT INTO `host_ips` (host_id, src_gip, src_lip, created_at) VALUES ('$host_id','$src_gip','$src_lip','$datetime') ON DUPLICATE KEY UPDATE src_gip = '$src_gip',src_lip =  '$src_lip';";
         \DB::statement($sql);
