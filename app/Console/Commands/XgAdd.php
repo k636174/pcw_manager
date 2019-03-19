@@ -68,8 +68,6 @@ class XgAdd extends Command
         $data = curl_exec($ch);
         curl_close($ch);
         $array_data = simplexml_load_string($data);
-        var_dump($array_data);
-        var_dump($replaced);
         exit;
 
     }
