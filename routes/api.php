@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('heartbeat', 'ApiController@heartbeat');
+Route::get('heartbeat_sp', 'ApiController@heartbeat_sp');
